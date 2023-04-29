@@ -4,5 +4,8 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongod
 sudo apt-get install apt-transport-https ca-certificates
 sudo apt update
 sudo apt install -y mongodb-org
+sudo systemctl status mongod # after install
 sudo systemctl start mongod
+sudo systemctl status mongod # after start
 sudo systemctl enable mongod
+sudo systemctl status mongod # after enabling
