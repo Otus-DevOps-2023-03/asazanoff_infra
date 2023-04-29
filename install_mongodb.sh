@@ -5,5 +5,11 @@ sudo apt install apt-transport-https ca-certificates
 sudo apt update
 sudo /etc/init.d/dbus start
 sudo apt install -y mongodb-org
+
+sudo mkdir -p /run/dbus
+sudo dbus-daemon --system
 sudo systemctl start mongod
 sudo systemctl enable mongod
+
+sudo service mongod start
+sudo service mongod enable
