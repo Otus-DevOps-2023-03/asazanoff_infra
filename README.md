@@ -41,5 +41,5 @@ someinternalhost_IP = 10.128.0.3
     >> --metadata-from-file user-data=metadata.yaml
 
 
-testapp_IP = 158.160.41.252
+testapp_IP = 158.160.100.105
 testapp_port = 9292
