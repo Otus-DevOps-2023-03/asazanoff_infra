@@ -1,7 +1,7 @@
 {
     "folder_id": "folder_id",
     "source_image_family": "source_image_family",
-    "service_key_file_path": "service_key_file_path",
+    "service_key_file_path": "dummy-key-file.txt",
     "subnet_id": "subnet_id",
     "platform_id": "platform_id",
     "ssh_username": "ssh_username"
