@@ -1,0 +1,11 @@
+[Unit]
+Description=RedditFullApp
+After=mongod.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/puma --dir /var/otus-dz/reddit
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
