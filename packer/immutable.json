@@ -1,0 +1,43 @@
+{
+    "builders": [
+        {
+            "type": "yandex",
+            "service_account_key_file": "{{user `service_key_file_path`}}",
+            "folder_id": "{{user `folder_id`}}",
+            "source_image_family": "{{user `source_image_family`}}",
+            "image_name": "reddit-full-{{timestamp}}",
+            "image_family": "reddit-full",
+            "ssh_username": "{{user `ssh_username`}}",
+            "platform_id": "{{user `platform_id`}}",
+            "subnet_id": "{{user `subnet_id`}}",
+            "use_ipv4_nat": true,
+            "preemptible": true
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "files\\install_base.sh",
+            "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "file",
+            "source": "files\\reddit_full.service",
+            "destination": "reddit_full.service"
+        },
+        {
+            "type": "shell",
+            "inline": ["sudo cp reddit_full.service /etc/systemd/system/"]
+        },
+        {
+            "type": "shell",
+            "script": "files\\clone_app.sh",
+            "execute_command": "{{.Path}}"
+        },
+        {
+            "type": "shell",
+            "script": "files\\enable_service.sh",
+            "execute_command": "sudo {{.Path}}"
+        }
+    ]
+}
