@@ -8,7 +8,8 @@ terraform {
 }
 
 provider "yandex" {
-  zone = var.zone
+  version = "~> 0.35"
+  zone    = var.zone
 }
 
 resource "yandex_compute_instance" "app" {
