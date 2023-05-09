@@ -1,3 +1,4 @@
+/*
 terraform {
   required_providers {
     yandex = {
@@ -7,6 +8,7 @@ terraform {
   }
 
 }
+*/
 
 provider "yandex" {
   zone = var.zone
@@ -27,7 +29,7 @@ module "app" {
   public_key_path          = var.public_key_path
   app_disk_image           = var.app_disk_image
   subnet_id                = var.subnet_id
-  depends_on               = [module.db]
+//  depends_on               = [module.db] // Uncomment this line
   db_address               = module.db.internal_ip_address_db
   private_key_path         = var.private_key_path
 }
@@ -38,7 +40,7 @@ module "db" {
   public_key_path          = var.public_key_path
   db_disk_image            = var.db_disk_image
   subnet_id                = var.subnet_id
-  depends_on               = [module.bastion]
+//  depends_on               = [module.bastion] // Uncomment this line
   bastion_host             = module.bastion.external_ip_address_bastion
   private_key_path         = var.private_key_path
 }

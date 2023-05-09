@@ -1,0 +1,9 @@
+zone                     = "ru-central1-a"
+image_id                 = "image_id"
+subnet_id                = "subnet_id"
+public_key_path          = "public_key_path"
+service_account_key_file = "service_account_key_file"
+private_key_path         = "private_key_path"
+instances                = 1
+app_disk_image           = "app_disk_image"
+db_disk_image            = "db_disk_image"

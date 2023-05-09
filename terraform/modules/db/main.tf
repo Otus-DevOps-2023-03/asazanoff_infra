@@ -1,3 +1,4 @@
+/*
 terraform {
   required_providers {
     yandex = {
@@ -6,6 +7,7 @@ terraform {
     }
   }
 }
+*/
 
 resource "yandex_compute_instance" "db" {
   name        = "reddit-db"
