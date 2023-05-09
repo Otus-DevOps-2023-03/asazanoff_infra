@@ -18,7 +18,6 @@ resource "yandex_lb_network_load_balancer" "networkLoadBalancer" {
 
 resource "yandex_lb_target_group" "loadBalancerTargetGroup" {
   name = "reddit-target-group"
-
   dynamic "target" {
     for_each = yandex_compute_instance.app.*.network_interface.0.ip_address
     content {

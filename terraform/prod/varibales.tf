@@ -21,3 +21,15 @@ variable "instances" {
   description = "Amount of machines"
   default     = 1
 }
+variable "app_disk_image" {
+  description = "Disk image for Reddit app"
+  default     = "reddit-app-base"
+}
+variable "db_disk_image" {
+  description = "Database image for Reddit app"
+  default     = "reddit-db-base"
+}
+variable "bastion_disk_image" {
+  description = "Bastion host image"
+  default     = "bastion"
+}

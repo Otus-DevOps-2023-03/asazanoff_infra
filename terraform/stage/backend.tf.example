@@ -1,0 +1,12 @@
+backend "s3" {
+  endpoint                    = "storage.yandexcloud.net"
+  bucket                      = "Имя бакета"
+  region                      = "ru-central1"
+  key                         = "Имя файла для стейта"
+  access_key                  = "Ключ доступа"
+  secret_key                  = "Секретный ключ"
+  skip_region_validation      = true
+  skip_credentials_validation = true
+  dynamodb_endpoint           = "Document API эндпоинт"
+  dynamodb_table              = "state-lock-table"
+}

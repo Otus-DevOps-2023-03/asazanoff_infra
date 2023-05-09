@@ -1,7 +1,0 @@
-zone                     = "ru-central1-a"
-image_id                 = "IMAGE_ID"
-subnet_id                = "SUBNET_ID"
-public_key_path          = "~/.ssh/appuser.pub"
-service_account_key_file = "../secrets/tf-sa-key.json"
-private_key_path         = "~/.ssh/appuser"
-instances                = 1
