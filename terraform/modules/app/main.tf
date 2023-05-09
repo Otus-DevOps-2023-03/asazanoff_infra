@@ -35,7 +35,6 @@ resource "yandex_compute_instance" "app" {
   allow_stopping_for_update = true
 
   connection {
-    count = 0
     type        = "ssh"
     host        = self.network_interface.0.nat_ip_address
     user        = "ubuntu"
@@ -44,7 +43,7 @@ resource "yandex_compute_instance" "app" {
   }
   provisioner "file" {
     count = 0
-    content = templatefile("puma.service", {
+    content = templatefile("./puma.service", {
       "database_url" = var.db_address
     })
     destination = "/tmp/puma.service"
