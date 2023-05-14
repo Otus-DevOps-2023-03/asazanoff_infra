@@ -1,4 +1,4 @@
-/*
+
 terraform {
   required_providers {
     yandex = {
@@ -7,7 +7,7 @@ terraform {
     }
   }
 }
-*/
+
 resource "yandex_compute_instance" "bastion" {
   name = "bastion-host"
   platform_id = "standard-v2"

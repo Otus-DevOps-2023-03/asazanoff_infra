@@ -1,0 +1,9 @@
+app:
+  hosts:
+    appserver:
+      ansible_host: 158.160.34.210
+db:
+  hosts:
+    dbserver:
+      ansible_host: 10.128.0.10
+      ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q ubuntu@51.250.11.243"'

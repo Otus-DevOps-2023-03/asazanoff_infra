@@ -1,4 +1,3 @@
-/*
 terraform {
   required_providers {
     yandex = {
@@ -7,7 +6,7 @@ terraform {
     }
   }
 }
-*/
+
 
 resource "yandex_compute_instance" "app" {
   name        = "reddit-app"
@@ -42,16 +41,14 @@ resource "yandex_compute_instance" "app" {
     private_key = file(var.private_key_path)
   }
   provisioner "file" {
-    /*
-    content = templatefile("./puma.service", {
+    content = templatefile("${path.module}/puma.service", {
       "database_url" = var.db_address
     })
-    */
     //^^^ uncomment this and comment next line
-    source      = "puma.service"
+    //source      = "puma.service"
     destination = "/tmp/puma.service"
   }
   provisioner "remote-exec" {
-    script = "deploy.sh"
+    script = "${path.module}/deploy.sh"
   }
 }
