@@ -1,4 +1,4 @@
-
+/*
 terraform {
   required_providers {
     yandex = {
@@ -8,7 +8,7 @@ terraform {
   }
 
 }
-
+*/
 
 provider "yandex" {
   zone = var.zone
