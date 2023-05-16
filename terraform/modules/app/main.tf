@@ -43,7 +43,7 @@ resource "yandex_compute_instance" "app" {
   }
   provisioner "file" {
     /*
-    content = templatefile("./puma.service", {
+    content = templatefile("${path.module}/puma.service", {
       "database_url" = var.db_address
     })
     */
@@ -52,6 +52,6 @@ resource "yandex_compute_instance" "app" {
     destination = "/tmp/puma.service"
   }
   provisioner "remote-exec" {
-    script = "deploy.sh"
+    script = "${path.module}/deploy.sh"
   }
 }
