@@ -1,0 +1,14 @@
+---
+- name: Install Ruby and Bundler
+  become: true
+  hosts: all
+  tasks:
+    - name: Install Ruby, Bundler and Git task
+      ansible.builtin.apt:
+        update-cache: true
+        name:
+          - ruby-full
+          - ruby-bundler
+          - build-essential
+          - git
+        state: present

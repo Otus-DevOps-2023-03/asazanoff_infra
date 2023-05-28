@@ -1,4 +1,3 @@
-/*
 terraform {
   required_providers {
     yandex = {
@@ -7,7 +6,7 @@ terraform {
     }
   }
 }
-*/
+
 
 resource "yandex_compute_instance" "db" {
   name        = "reddit-db"
@@ -45,11 +44,16 @@ resource "yandex_compute_instance" "db" {
     bastion_private_key = file(var.private_key_path)
     bastion_user        = "ubuntu"
   }
+  /*
   provisioner "remote-exec" {
     inline = [
       "sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf",
       "sudo systemctl restart mongod"
     ]
   }
-
+  */
+  labels = {
+    label = "db"
+    machinetype = "dbserver"
+  }
 }

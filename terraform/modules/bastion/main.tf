@@ -1,4 +1,3 @@
-/*
 terraform {
   required_providers {
     yandex = {
@@ -7,14 +6,14 @@ terraform {
     }
   }
 }
-*/
+
 
 resource "yandex_compute_instance" "bastion" {
-  name = "bastion-host"
+  name        = "bastion-host"
   platform_id = "standard-v2"
   resources {
-    cores  = 2
-    memory = 2
+    cores         = 2
+    memory        = 2
     core_fraction = 5
   }
   boot_disk {
@@ -33,4 +32,8 @@ resource "yandex_compute_instance" "bastion" {
     preemptible = true
   }
   allow_stopping_for_update = true
+  labels = {
+    label = "bastion"
+    machinetype = "bastion"
+  }
 }
