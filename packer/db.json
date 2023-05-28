@@ -10,7 +10,8 @@
             "platform_id": "{{user `platform_id`}}",
             "subnet_id": "{{user `subnet_id`}}",
             "use_ipv4_nat": true,
-            "preemptible": true
+            "preemptible": true,
+            "service_account_key_file": "{{user `service_key_file_path`}}"
         }
     ],
     "provisioners": [
@@ -20,6 +21,5 @@
             "user": "{{user `ssh_username`}}",
             "use_proxy": "false"
         }
-    ],
-    "_service_account_key_file": "{{user `service_key_file_path`}}"
+    ]
 }
