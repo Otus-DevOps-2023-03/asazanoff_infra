@@ -53,18 +53,18 @@
   tags: deploy-tag
   tasks:
     - name: Get latest version of app
-      ansible.builtin.git:
+      git:
         repo: https://github.com/express42/reddit.git
         dest: /home/ubuntu/reddit
         version: monolith
       notify: Reload puma
     - name: Bundle install
-      community.general.bundler:
+      bundler:
         state: present
         chdir: /home/ubuntu/reddit
   handlers:
     - name: Reload puma
       become: true
-      ansible.builtin.systemd:
+      systemd:
         name: puma
         state: restarted
