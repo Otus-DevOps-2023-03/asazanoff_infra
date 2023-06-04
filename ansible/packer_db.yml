@@ -4,21 +4,21 @@
   hosts: all
   tasks:
     - name: Add key for MongoDB
-      ansible.builtin.apt_key:
+      apt_key:
         url: https://www.mongodb.org/static/pgp/server-4.4.asc
         state: present
     - name: Add repo for MongoDB
-      ansible.builtin.apt_repository:
+      apt_repository:
         repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.4 multiverse
         state: present
     - name: Install MongoDB task
-      ansible.builtin.apt:
+      apt:
         update-cache: true
         name:
           - mongodb-org
         state: present
     - name: Start MongoDB
-      ansible.builtin.systemd:
+      systemd:
         name: mongod
         enabled: true
         state: started

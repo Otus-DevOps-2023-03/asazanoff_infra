@@ -4,7 +4,7 @@
   hosts: all
   tasks:
     - name: Install Ruby, Bundler and Git task
-      ansible.builtin.apt:
+      apt:
         update-cache: true
         name:
           - ruby-full
