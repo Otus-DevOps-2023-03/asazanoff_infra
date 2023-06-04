@@ -33,3 +33,7 @@ variable "bastion_disk_image" {
   description = "Bastion host image"
   default     = "bastion"
 }
+variable "env_type" {
+  description = "Environmental type"
+  default     = "prod"
+}

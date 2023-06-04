@@ -21,3 +21,6 @@ variable "disable_provisioning" {
   type = bool
   default = false
 }
+variable "env_type" {
+  description = "Environmental type (prod, stage, etc)"
+}

@@ -17,3 +17,6 @@ variable "bastion_host" {
 variable "private_key_path" {
   description = "Path to the private key used for ssh access"
 }
+variable "env_type" {
+  description = "Environmental type (prod, stage, etc)"
+}

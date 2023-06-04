@@ -10,3 +10,6 @@ variable "service_account_key_file" {
 variable "bastion_disk_image" {
   description = "Bastion host image"
 }
+variable "env_type" {
+  description = "Environmental type (prod, stage, etc)"
+}

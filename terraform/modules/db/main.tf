@@ -9,7 +9,7 @@ terraform {
 
 
 resource "yandex_compute_instance" "db" {
-  name        = "reddit-db"
+  name        = "${var.env_type}-reddit-db"
   platform_id = "standard-v2"
   resources {
     cores         = 2
@@ -53,7 +53,8 @@ resource "yandex_compute_instance" "db" {
   }
   */
   labels = {
-    label = "db"
-    machinetype = "dbserver"
+    label            = "db"
+    machinetype      = "dbserver"
+    environment_type = var.env_type
   }
 }
