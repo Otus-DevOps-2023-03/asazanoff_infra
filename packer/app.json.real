@@ -18,7 +18,8 @@
         {
             "type": "ansible",
             "playbook_file": "ansible/packer_app.yml",
-            "user": "{{user `ssh_username`}}"
+            "user": "{{user `ssh_username`}}",
+            "use_proxy": "false"
         }
     ]
 }
