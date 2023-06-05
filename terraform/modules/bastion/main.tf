@@ -9,7 +9,7 @@ terraform {
 
 
 resource "yandex_compute_instance" "bastion" {
-  name        = "bastion-host"
+  name        = "${var.env_type}-bastion-host"
   platform_id = "standard-v2"
   resources {
     cores         = 2
@@ -33,7 +33,8 @@ resource "yandex_compute_instance" "bastion" {
   }
   allow_stopping_for_update = true
   labels = {
-    label = "bastion"
-    machinetype = "bastion"
+    label            = "bastion"
+    machinetype      = "bastion"
+    environment_type = var.env_type
   }
 }

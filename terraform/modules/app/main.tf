@@ -10,7 +10,7 @@ terraform {
 
 
 resource "yandex_compute_instance" "app" {
-  name        = "reddit-app"
+  name        = "${var.env_type}-reddit-app"
   platform_id = "standard-v2"
   resources {
     cores         = 2
@@ -57,7 +57,8 @@ resource "yandex_compute_instance" "app" {
   }
   */
   labels = {
-    label = "app"
-    machinetype = "appserver"
+    label            = "app"
+    machinetype      = "appserver"
+    environment_type = var.env_type
   }
 }
