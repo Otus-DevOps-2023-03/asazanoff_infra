@@ -4,8 +4,8 @@
             "type": "yandex",
             "folder_id": "{{user `folder_id`}}",
             "source_image_family": "{{user `source_image_family`}}",
-            "image_name": "reddit-app-base-{{timestamp}}",
-            "image_family": "reddit-app-base",
+            "image_name": "reddit-db-base-{{timestamp}}",
+            "image_family": "reddit-db-base",
             "ssh_username": "{{user `ssh_username`}}",
             "platform_id": "{{user `platform_id`}}",
             "subnet_id": "{{user `subnet_id`}}",
@@ -17,8 +17,9 @@
     "provisioners": [
         {
             "type": "ansible",
-            "playbook_file": "ansible/packer_app.yml",
-            "user": "{{user `ssh_username`}}"
+            "playbook_file": "ansible/packer_db.yml",
+            "user": "{{user `ssh_username`}}",
+            "use_proxy": "false"
         }
     ]
 }
