@@ -1,0 +1,6 @@
+zone                     = "ru-central1-a"
+disk_image               = "fd8ebb4u1u8mc6fheog1"
+subnet_id                = "e9bf7cfgsfcka2ae88lp"
+public_key_path          = "~/.ssh/id_rsa.pub"
+service_account_key_file = "tf-sa-key.json"
+private_key_path         = "~/.ssh/id_rsa"
