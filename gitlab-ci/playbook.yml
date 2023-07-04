@@ -1,0 +1,96 @@
+---
+- name: Prepare Gitlab
+  hosts: all
+  become: true
+  vars:
+    ansible_port: '22'
+  tasks:
+    - name: Install prerequisites
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+        state: present
+        update_cache: true
+    - name: Add GPG key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    - name: Add repo
+      ansible.builtin.apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu jammy stable
+        state: present
+    - name: Install Docker
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+          - docker-compose
+        state: present
+        update_cache: true
+    - name: Check Docker was starterd
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+    - name: Enable usage of Docker as non-root
+      ansible.builtin.group:
+        name: docker
+        state: present
+    - name: Add user to Docker group
+      ansible.builtin.user:
+        name: ubuntu
+        groups:
+          - docker
+        append: true
+        state: present
+    - name: Make folders for Gitlab data
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - /srv/gitlab/config/
+        - /srv/gitlab/data/
+        - /srv/gitlab/logs/
+    - name: Add Gitlab config file
+      ansible.builtin.template:
+        src: docker-compose.yml.j2
+        dest: /srv/gitlab/docker-compose.yml
+        mode: "0755"
+    - name: Run docker-compose for Gitlab
+      community.docker.docker_compose:
+        state: present
+        project_src: /srv/gitlab/
+      tags: "compose"
+    - name: Run Gitlab Runner
+      community.docker.docker_container:
+        name: gitlab-runner
+        image: gitlab/gitlab-runner:latest
+        restart_policy: always
+        volumes:
+          - /srv/gitlab-runner/config:/etc/gitlab-runner
+          - /var/run/docker.sock:/var/run/docker.sock
+        detach: true
+        state: started
+    - name: Register runner
+      community.docker.docker_container_exec:
+        container: gitlab-runner
+        command: >
+                 gitlab-runner register
+                 --url http://{{ ansible_host }}/
+                 --non-interactive
+                 --locked=false
+                 --name DockerRunner
+                 --executor docker
+                 --docker-image docker:20.10.16
+                 --registration-token GR1348941xJ8EsVfN_bK_ASHP8uqf
+                 --docker-privileged
+                 --tag-list "linux,xenial,ubuntu,docker"
+                 --run-untagged
+      tags: "runner"
